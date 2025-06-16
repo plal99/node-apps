@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
-const expenseSchema = require('../db/expense-db');
+const Expense = require('../db/expense-db');
 
 // Home page of Expense Tracker
 router.get('/', async (req, res) => {
