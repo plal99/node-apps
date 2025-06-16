@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Weather App</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gradient-to-r from-indigo-900 to-blue-500 min-h-screen flex flex-col items-center justify-start">
+
+  <div class="w-full bg-white shadow-md p-4 flex justify-between items-center mb-10">
+
+    <!-- Left: Dashboard -->
+    <a href="/" class="bg-indigo-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-indigo-600 transition text-lg">Dashboard</a>
+
+
+    <!-- Right: App Navigation -->
+    <div class="flex gap-4">
+      <a href="/todo" class="bg-indigo-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-indigo-600 transition">Todo App</a>
+      <a href="/url-shortener" class="bg-indigo-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-indigo-600 transition">URL Shortener</a>
+      <a href="/weather" class="bg-indigo-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-indigo-600 transition">Weather</a>
+    </div>
+
+  </div>
+
+  <div class="bg-white p-10 rounded-xl shadow-xl w-full max-w-lg text-center">
+    <h1 class="text-3xl font-bold mb-6 text-indigo-800">Weather App</h1>
+
+    <form action="/weather" method="POST" class="mb-8 flex">
+      <input type="text" name="city" placeholder="Enter city..." required class="flex-grow p-3 border rounded-l-lg">
+      <button type="submit" class="bg-indigo-600 text-white px-5 rounded-r-lg">Get</button>
+    </form>
+
+    <% if (weather) { %>
+      <div class="text-xl font-semibold mb-4 text-indigo-700">
+        <%= weather.city %>, <%= weather.country %>
+      </div>
+      <div class="text-5xl mb-2"><%= weather.temperature %>°C</div>
+      <div class="mb-4 capitalize"><%= weather.description %></div>
+      <img src="<%= weather.icon %>" alt="Weather Icon">
+    <% } %>
+
+    <% if (error) { %>
+      <div class="text-red-500 font-semibold"><%= error %></div>
+    <% } %>
+
+  </div>
+
+</body>
+
+</html>
