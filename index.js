@@ -14,6 +14,7 @@ app.use('/todo', require('./routes/todo'));
 app.use('/url-shortener', require('./routes/url-shortener'));
 app.use('/weather', require('./routes/weather'));
 app.use('/notes', require('./routes/notes'));
+app.use('/expense', require('./routes/expense'));
 
 app.get("/", (req, res) => {
   res.render("home");

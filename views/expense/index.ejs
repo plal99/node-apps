@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Expense Tracker</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-r from-indigo-900 to-blue-500 min-h-screen flex flex-col items-center justify-start">
+
+  <div class="w-full bg-white shadow-md p-4 flex justify-between items-center mb-10">
+    <a href="/" class="bg-indigo-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-indigo-600 transition text-lg">Dashboard</a>
+    <div class="flex gap-4">
+      <a href="/todo" class="bg-indigo-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-indigo-600 transition">Todo</a>
+      <a href="/url-shortener" class="bg-indigo-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-indigo-600 transition">URL Shortener</a>
+      <a href="/weather" class="bg-indigo-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-indigo-600 transition">Weather</a>
+      <a href="/notes" class="bg-indigo-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-indigo-600 transition">Notes</a>
+    </div>
+  </div>
+
+  <div class="bg-white p-8 rounded-xl shadow-lg w-full max-w-lg">
+    <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">Expense Tracker</h1>
+
+    <!-- Add Expense Form -->
+    <form action="/expense" method="POST" class="mb-6">
+      <input type="text" name="title" placeholder="Title" required class="w-full mb-3 p-3 rounded border">
+      <input type="number" name="amount" placeholder="Amount" required class="w-full mb-3 p-3 rounded border">
+      <input type="text" name="category" placeholder="Category" required class="w-full mb-3 p-3 rounded border">
+      <textarea name="description" placeholder="Description" required class="w-full mb-3 p-3 rounded border"></textarea>
+      <button type="submit" class="bg-indigo-500 w-full text-white p-3 rounded font-bold">Add Expense</button>
+    </form>
+
+    <% expenses.forEach(expense => { %>
+      <div class="flex justify-between items-center bg-gray-100 p-3 rounded mb-3">
+        <div>
+          <h3 class="font-bold text-lg"><%= expense.title %></h3>
+          <p>₹<%= expense.amount %> - <%= expense.category %> - <%= expense.date.toDateString() %></p>
+          <p class="text-gray-600"><%= expense.description %></p>   
+        </div>
+        <form action="/expense/delete/<%= expense._id %>" method="POST">
+          <button class="text-red-500 text-xl font-bold">&times;</button>
+        </form>
+      </div>
+    <% }) %>
+  </div>
+
+</body>
+</html>
