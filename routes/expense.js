@@ -4,10 +4,6 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const expenseSchema = require('../db/expense-db');
 
-// Connect to Expense DB
-const expenseConnection = mongoose.createConnection(process.env.MONGO_URI_EXPENSES);
-const Expense = expenseConnection.model('Expense', expenseSchema);
-
 // Home page of Expense Tracker
 router.get('/', async (req, res) => {
   const expenses = await Expense.find().sort({ date: -1 });
