@@ -13,6 +13,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/todo', require('./routes/todo'));
 app.use('/url-shortener', require('./routes/url-shortener'));
 app.use('/weather', require('./routes/weather'));
+app.use('/notes', require('./routes/notes'));
 
 app.get("/", (req, res) => {
   res.render("home");

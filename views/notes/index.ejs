@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Notes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+
+<body class="bg-gradient-to-r from-indigo-900 to-blue-500 min-h-screen flex flex-col items-center justify-start"></body>
+<div class="w-full bg-white shadow-md p-4 flex justify-between items-center mb-10">
+
+    <a href="/" class="bg-indigo-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-indigo-600 transition text-lg">Dashboard</a>
+    <div class="flex gap-4">
+        <a href="/todo" class="bg-indigo-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-indigo-600 transition">Todo App</a>
+        <a href="/url-shortener" class="bg-indigo-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-indigo-600 transition">URL Shortener</a>
+        <a href="/weather" class="bg-indigo-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-indigo-600 transition">Weather</a>
+        <a href="/notes" class="bg-indigo-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-indigo-600 transition">Notes</a>
+    </div>
+
+</div>
+<div class=" flex flex-col items-center p-10">
+
+    <h1 class="text-3xl font-bold text-white mb-6">Notes App</h1>
+
+    <!-- Search Form -->
+    <form class="mb-6 flex" method="GET" action="/notes">
+        <input type="text" name="search" placeholder="Search by title or tag..." value="<%= search %>"
+            class="px-4 py-2 rounded-l w-80">
+        <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded-r">Search</button>
+    </form>
+
+    <!-- New Note Form -->
+    <form class="mb-10 w-full max-w-lg" method="POST" action="/notes">
+        <input type="text" name="title" placeholder="Title" required class="mb-3 px-4 py-2 w-full rounded">
+        <textarea name="content" placeholder="Content" class="mb-3 px-4 py-2 w-full rounded"></textarea>
+        <input type="text" name="tags" placeholder="Tags (comma separated)" class="mb-3 px-4 py-2 w-full rounded">
+        <button type="submit" class="bg-green-600 text-white px-6 py-2 rounded w-full">Add Note</button>
+    </form>
+
+    <!-- Notes List -->
+    <% notes.forEach(note=> { %>
+        <div class="bg-white shadow rounded p-5 mb-5 w-full max-w-lg">
+            <h2 class="text-xl font-bold">
+                <%= note.title %>
+            </h2>
+            <p>
+                <%= note.content %>
+            </p>
+            <p class="text-sm text-gray-500">Tags: <%= note.tags.join(", ") %></p>
+        <p class=" text-xs text-gray-400">Created: <%= note.createdAt.toLocaleString() %>
+            </p>
+
+            <div class="flex gap-4 mt-4">
+                <a href="/notes/edit/<%= note._id %>" class="bg-yellow-500 text-white px-4 py-2 rounded">Edit</a>
+                <form action="/notes/delete/<%= note._id %>" method="POST">
+                    <button type="submit" class="bg-red-600 text-white px-4 py-2 rounded">Delete</button>
+                </form>
+            </div>
+        </div>
+        <% }) %>
+
+            <% if(notes.length===0) { %>
+                <p class="text-white text-lg">No notes yet!</p>
+                <% } %>
+</div>
+
+</body>
+
+</html>
