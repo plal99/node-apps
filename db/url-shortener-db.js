@@ -1,9 +1,6 @@
 const mongoose = require('mongoose');
 
-const urlConnection = mongoose.createConnection(process.env.MONGO_URI_URL_SHORTENER, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
+const urlConnection = mongoose.createConnection(process.env.MONGO_URI_URL_SHORTENER);
 
 urlConnection.on('connected', () => {
   console.log('URL SHORTENER DB connected successfully');

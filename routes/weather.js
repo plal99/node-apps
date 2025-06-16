@@ -27,7 +27,7 @@ router.post('/', async (req, res) => {
             country: data.sys.country,
             temperature: data.main.temp,
             description: data.weather[0].description,
-            icon: data.weather[0].icon
+            icon: `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`
         }
 
         res.render('weather/index', { weather, error: null });

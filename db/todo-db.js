@@ -1,9 +1,6 @@
 const mongoose = require("mongoose");
 
-const todoConnection = mongoose.createConnection(process.env.MONGO_URI_TODO, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
+const todoConnection = mongoose.createConnection(process.env.MONGO_URI_TODO);
 
 todoConnection.on('connected', () => {
   console.log('Todo DB connected successfully');

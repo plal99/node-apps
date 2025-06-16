@@ -1,9 +1,6 @@
 const mongoose = require("mongoose");
 
-const notesConnection = mongoose.createConnection(process.env.MONGO_URI_NOTES, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
+const notesConnection = mongoose.createConnection(process.env.MONGO_URI_NOTES);
 
 notesConnection.on('connected', () => {
   console.log('Notes DB connected successfully');
