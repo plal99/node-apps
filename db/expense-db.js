@@ -18,6 +18,4 @@ const expenseSchema = new mongoose.Schema({
     description: String
 })
 
-const Expense = expenseConnection.model('Expense', expenseSchema);
-
-module.exports = Expense;
+module.exports = expenseSchema;
